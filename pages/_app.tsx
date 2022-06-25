@@ -10,7 +10,7 @@ function AppWrapper({ Component, pageProps }: AppProps) {
 
   return <div>
     <Navbar ethAddress={ethAddress} setETHAddress={setETHAddress} setCBContract={setCBContract}/>
-    <Component {...pageProps} />
+    <Component {...pageProps} ethAddress={ethAddress} cbContract={cbContract} />
   </div>
   
 }
