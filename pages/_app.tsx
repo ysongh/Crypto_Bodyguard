@@ -1,17 +1,14 @@
 import '../styles/globals.css'
+import 'bootstrap/dist/css/bootstrap.css';
 import type { AppProps } from 'next/app'
-import dynamic from 'next/dynamic'
-
-const AppWithoutSSR = dynamic(() => import('../components/App'), {
-  ssr: false,
-})
+import Navbar from '../components/Navbar';
 
 function AppWrapper({ Component, pageProps }: AppProps) {
-  return (
-    <AppWithoutSSR>
-      <Component {...pageProps} />
-    </AppWithoutSSR>
-  )
+  return <div>
+    <Navbar />
+    <Component {...pageProps} />
+  </div>
+  
 }
 
 export default AppWrapper
