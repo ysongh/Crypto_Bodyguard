@@ -34,7 +34,7 @@ function Navbar({ ethAddress, setETHAddress, setCBContract }) {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" href="/">Crypto Bodyguard</Link>
+        <Link className="navbar-brand" href="/"><img className="h-12 w-auto" src="/logo.png" alt="Logo" /></Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
