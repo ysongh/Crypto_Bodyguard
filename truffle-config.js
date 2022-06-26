@@ -12,6 +12,14 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    // truffle migrate --network rinkeby
+    rinkeby: {
+      provider: () => new HDWalletProvider(mnemonic, `https://eth-rinkeby.gateway.pokt.network/v1/lb/`),
+      network_id: "4",
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
