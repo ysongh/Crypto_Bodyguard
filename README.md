@@ -1,5 +1,7 @@
 # Crypto Bodyguard
 
+- Published on Valist.io => https://app.valist.io/songweb3/cryptobodyguard
+
 ## Getting Started
 
 ### Configure Infura
