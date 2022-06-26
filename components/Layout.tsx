@@ -7,7 +7,7 @@ import useWallet from '../hooks/useWallet'
 import { NavigationView, ConversationView } from './Views'
 import { RecipientControl } from './Conversation'
 import NewMessageButton from './NewMessageButton'
-import NavigationPanel from './NavigationPanel'
+// import NavigationPanel from './NavigationPanel'
 import XmtpInfoPanel from './XmtpInfoPanel'
 import UserMenu from './UserMenu'
 import BackArrow from './BackArrow'
@@ -123,7 +123,7 @@ const Layout: React.FC = ({ children }) => {
         />
       </Head>
       <div>
-        <NavigationView>
+        {/* <NavigationView>
           <NavigationColumnLayout>
             <NavigationHeaderLayout>
               {walletAddress && client && <NewMessageButton />}
@@ -134,7 +134,7 @@ const Layout: React.FC = ({ children }) => {
               onDisconnect={handleDisconnect}
             />
           </NavigationColumnLayout>
-        </NavigationView>
+        </NavigationView> */}
         <ConversationView>
           {walletAddress && client ? (
             <ConversationLayout>{children}</ConversationLayout>

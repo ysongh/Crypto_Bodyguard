@@ -8,7 +8,7 @@ const AppWithoutSSR = dynamic(() => import('../components/App'), {
 function chat({ Component, pageProps }: AppProps) {
   return (
     <AppWithoutSSR>
-      <Component {...pageProps} />
+      <Component />
     </AppWithoutSSR>
   )
 }

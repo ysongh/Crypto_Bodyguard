@@ -1,3 +1,4 @@
+export const RINKEBY_CB_Address = "0x702a3fefe8B324e7Be41911be25Dde714077f1d9"
 export const CB_Address = "0x65903CD37C41a6f9aeb99e95ceD652c358a1150c"
 export const CB_ABI = [
 	{
