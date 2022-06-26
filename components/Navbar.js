@@ -55,6 +55,11 @@ function Navbar({ ethAddress, setETHAddress, setCBContract }) {
                 <Link href="/signup">Signup</Link>
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" aria-current="page">
+                <Link href="/map">Map</Link>
+              </a>
+            </li>
           </ul>
           <button className="btn btn-outline-success" onClick={openWithMetaMask}>
             {ethAddress ? ethAddress.substring(0,8) + "..." + ethAddress.substring(34,42) : "Connect to Wallet"}
