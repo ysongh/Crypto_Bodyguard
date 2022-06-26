@@ -1,7 +1,7 @@
 {
   "name": "crypto_bodyguard",
   "version": "1.0.0",
-  "description": "Example chat application using xmtp-js client",
+  "description": "A Dapp where you can hire bodyguard and pay them with Crypto",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,8 +10,6 @@
     "lint": "next lint",
     "test": "jest"
   },
-  "author": "XMTP Labs <eng@xmtp.com>",
-  "license": "MIT",
   "dependencies": {
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
