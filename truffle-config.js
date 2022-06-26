@@ -20,6 +20,14 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    // truffle migrate --network optimisticKovan
+    optimisticKovan: {
+      provider: () => new HDWalletProvider(mnemonic, `https://opt-kovan.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`),
+      network_id: "69",
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
