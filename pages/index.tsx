@@ -14,7 +14,7 @@ function index({ cbContract }) {
     const total = await cbContract.methods.bodyGuardCount().call()
     console.log(total)
     let temp = [];
-    for(let i = 1; i < total; i++){
+    for(let i = 1; i <= total; i++){
       const data = await cbContract.methods.bodyGuardList(i).call()
       console.log(data);
       temp.push(data);
