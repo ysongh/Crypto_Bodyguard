@@ -3,11 +3,11 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 
-function map({ cbContract }) {
+function Map({ cbContract }) {
   const [lng, setLng] = useState(-73.9478);
   const [lat, setLat] = useState(40.7811);
   const [zoom, setZoom] = useState(10);
-  const [bodyGuards, setbodyGuards] = useState([]);
+  // const [bodyGuards, setbodyGuards] = useState([]);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -33,7 +33,7 @@ function map({ cbContract }) {
   async function loadBodyGuard(map) {
     const total = await cbContract.methods.bodyGuardCount().call()
     console.log(total)
-    let temp = [];
+    //let temp = [];
 
     for(let i = 1; i <= total; i++){
       const data = await cbContract.methods.bodyGuardList(i).call()
@@ -48,11 +48,11 @@ function map({ cbContract }) {
             )
         )
         .addTo(map);
-        temp.push(data);
+        //temp.push(data);
       }
     }
 
-    setbodyGuards(temp);
+    //setbodyGuards(temp);
   }
 
   return (
@@ -69,4 +69,4 @@ function map({ cbContract }) {
   )
 }
 
-export default map;
+export default Map;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function signup({ ethAddress, cbContract}) {
+function Signup({ ethAddress, cbContract}) {
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState(false);
   const [transactionUrl, setTransactionUrl] = useState('');
@@ -62,11 +62,11 @@ function signup({ ethAddress, cbContract}) {
         ?  <div className="card card-body m-auto w-50 mt-3">
             <h2>Set Available</h2>
             <div className="mb-3">
-              <label for="longitude" className="form-label">Longitude</label>
+              <label htmlFor="longitude" className="form-label">Longitude</label>
               <input className="form-control" id="longitude" onChange={(e) => setLng(e.target.value)}/>
             </div>
             <div className="mb-3">
-              <label for="latitude" className="form-label">Latitude</label>
+              <label htmlFor="latitude" className="form-label">Latitude</label>
               <input className="form-control" id="latitude" onChange={(e) => setLat(e.target.value)}/>
             </div>
             <div className="mb-3">
@@ -89,7 +89,7 @@ function signup({ ethAddress, cbContract}) {
         : <div className="card card-body m-auto w-50 mt-3">
             <h2>Sign up to be BodyGuard</h2>
             <div className="mb-3">
-              <label for="city" className="form-label">City</label>
+              <label htmlFor="city" className="form-label">City</label>
               <input className="form-control" id="city" onChange={(e) => setCity(e.target.value)}/>
             </div>
             <div className="mb-3">
@@ -114,4 +114,4 @@ function signup({ ethAddress, cbContract}) {
   )
 }
 
-export default signup
+export default Signup

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
 
-function sendThankyou() {
+function SendThankyou() {
   const router = useRouter();
   const { address } = router.query;
 
@@ -51,15 +51,15 @@ function sendThankyou() {
       <h2>Send Thank You Card</h2>
       <p>* Free Minting on Polygon</p>
       <div className="mb-3">
-        <label for="name" className="form-label">Name</label>
+        <label htmlFor="name" className="form-label">Name</label>
         <input className="form-control" id="name" onChange={(e) => setName(e.target.value)}/>
       </div>
       <div className="mb-3">
-        <label for="detail" className="form-label">Detail</label>
+        <label htmlFor="detail" className="form-label">Detail</label>
         <input className="form-control" id="detail" onChange={(e) => setText(e.target.value)}/>
       </div>
       <div className="mb-3">
-        <label for="url" className="form-label">URL of the Card</label>
+        <label htmlFor="url" className="form-label">URL of the Card</label>
         <input className="form-control" id="url" onChange={(e) => setCardURL(e.target.value)}/>
       </div>
       <div className="mb-3">
@@ -82,4 +82,4 @@ function sendThankyou() {
   )
 }
 
-export default sendThankyou
+export default SendThankyou

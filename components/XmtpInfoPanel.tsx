@@ -1,12 +1,8 @@
-import packageJson from '../package.json'
 import useXmtp from '../hooks/useXmtp'
 import { classNames } from '../helpers'
 import {
   LinkIcon,
-  BookOpenIcon,
-  UserGroupIcon,
   ChevronRightIcon,
-  ArrowSmRightIcon,
 } from '@heroicons/react/solid'
 
 type XmtpInfoRowProps = {

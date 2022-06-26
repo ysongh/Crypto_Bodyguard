@@ -2,32 +2,33 @@ import { useCallback, useEffect, useRef } from 'react'
 import useXmtp from '../hooks/useXmtp'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Link from 'next/link'
+// import Link from 'next/link'
 import useWallet from '../hooks/useWallet'
-import { NavigationView, ConversationView } from './Views'
+// import { NavigationView, ConversationView } from './Views'
+import { ConversationView } from './Views'
 import { RecipientControl } from './Conversation'
-import NewMessageButton from './NewMessageButton'
+// import NewMessageButton from './NewMessageButton'
 // import NavigationPanel from './NavigationPanel'
 import XmtpInfoPanel from './XmtpInfoPanel'
-import UserMenu from './UserMenu'
+// import UserMenu from './UserMenu'
 import BackArrow from './BackArrow'
 
-const NavigationColumnLayout: React.FC = ({ children }) => (
-  <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
-    <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
-      {children}
-    </div>
-  </aside>
-)
+// const NavigationColumnLayout: React.FC = ({ children }) => (
+//   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
+//     <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
+//       {children}
+//     </div>
+//   </aside>
+// )
 
-const NavigationHeaderLayout: React.FC = ({ children }) => (
-  <div className="h-14 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
-    <Link href="/" passHref={true}>
-      <img className="h-8 w-auto" src="/xmtp-icon.png" alt="XMTP" />
-    </Link>
-    {children}
-  </div>
-)
+// const NavigationHeaderLayout: React.FC = ({ children }) => (
+//   <div className="h-14 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
+//     <Link href="/" passHref={true}>
+//       <img className="h-8 w-auto" src="/xmtp-icon.png" alt="XMTP" />
+//     </Link>
+//     {children}
+//   </div>
+// )
 
 const TopBarLayout: React.FC = ({ children }) => (
   <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-gray-200 md:bg-white md:border-0">
@@ -73,18 +74,18 @@ const Layout: React.FC = ({ children }) => {
     walletAddress,
     client,
   } = useXmtp()
-  const router = useRouter()
+  // const router = useRouter()
   const {
     signer,
     connect: connectWallet,
-    disconnect: disconnectWallet,
+    // disconnect: disconnectWallet,
   } = useWallet()
 
-  const handleDisconnect = useCallback(async () => {
-    disconnectXmtp()
-    await disconnectWallet()
-    router.push('/')
-  }, [disconnectWallet, disconnectXmtp, router])
+  // const handleDisconnect = useCallback(async () => {
+  //   disconnectXmtp()
+  //   await disconnectWallet()
+  //   router.push('/')
+  // }, [disconnectWallet, disconnectXmtp, router])
 
   const handleConnect = useCallback(async () => {
     await connectWallet()

@@ -5,12 +5,12 @@ const AppWithoutSSR = dynamic(() => import('../components/App'), {
   ssr: false,
 })
 
-function chat({ Component, pageProps }: AppProps) {
+function Chat({ Component, pageProps }: AppProps) {
   return (
     <AppWithoutSSR>
-      <Component />
+      <Component {...pageProps} />
     </AppWithoutSSR>
   )
 }
 
-export default chat;
+export default Chat;

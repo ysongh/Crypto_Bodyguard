@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 
-function index({ cbContract }) {
+function Index({ cbContract }) {
   const router = useRouter();
 
   const [bodyGuards, setbodyGuards] = useState([]);
@@ -44,4 +44,4 @@ function index({ cbContract }) {
   )
 }
 
-export default index
+export default Index
