@@ -33,16 +33,17 @@ function Chat({ pageProps }: AppProps) {
     const messages = await conversation.messages();
     console.log(messages);
     setMessagesList(messages);
+
+    // Listen for new messages in the conversation
+    for await (const message of await conversation.streamMessages()) {
+      console.log(`[${message.senderAddress}]: ${message.content}`)
+      setMessagesList([...messages, message]);
+    }
   }
 
   const sendMessage = async () => {
     // Send a message
     await conversationMethod.send(newMessage);
-
-    // Listen for new messages in the conversation
-    for await (const message of await conversationMethod.streamMessages()) {
-      console.log(`[${message.senderAddress}]: ${message.text}`)
-    }
   }
 
   return (
