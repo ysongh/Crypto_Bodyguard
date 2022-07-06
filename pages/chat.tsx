@@ -1,10 +1,8 @@
 import React, { useState }  from 'react';
 import type { AppProps } from 'next/app';
 import { Client } from '@xmtp/xmtp-js';
-import { ethers } from 'ethers';
-import Web3Modal from 'web3modal';
 
-function Chat({ pageProps }: AppProps) {
+function Chat({ userSigner }: AppProps) {
   const [xmtpMethod, setxmtpMethod] = useState(null);
   const [conversationMethod, setconversationMethod] = useState(null);
   const [messagesList, setMessagesList] = useState([]);
@@ -12,16 +10,8 @@ function Chat({ pageProps }: AppProps) {
   const [newMessage, setNewMessage] = useState("");
 
   const connect = async () => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-
-    const provider = new ethers.providers.Web3Provider(connection);  
-    console.log(provider);
-
-    const signer = provider.getSigner();
-
     // Create the client with your wallet. This will connect to the XMTP development network by default
-    const xmtp = await Client.create(signer);
+    const xmtp = await Client.create(userSigner);
     console.log(xmtp);
     setxmtpMethod(xmtp);
   }

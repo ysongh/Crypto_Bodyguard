@@ -1,6 +1,7 @@
 import React, { useState }  from 'react';
 import Link from 'next/link';
-import Web3 from 'web3';
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';
 
 import {
   CB_ABI,
@@ -9,45 +10,34 @@ import {
   OP_K_CB_Address
 } from '../config';
 
-function Navbar({ ethAddress, setETHAddress, setCBContract }) {
+function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner }) {
   const [chainName, setChainName] = useState('');
 
   const openWithMetaMask = async () => {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
 
-      await window.ethereum.enable();
-      loadBlockchain();
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-      loadBlockchain();
-    }
-    else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
-    }
-  }
+    const provider = new ethers.providers.Web3Provider(connection);  
+    console.log(provider);
+    const { chainId } = await provider.getNetwork();
 
-  const loadBlockchain = async () => {
-    const web3 = window.web3;
-    const accounts = await web3.eth.getAccounts();
-    setETHAddress(accounts[0]);
+    const signer = provider.getSigner();
+    setUserSigner(signer);
+    const address = await signer.getAddress();
+    setETHAddress(address);
 
-    const networkId = await web3.eth.net.getId();
-    console.log(networkId);
-
-    if(networkId === 4){
-      const contract = new web3.eth.Contract(CB_ABI, RINKEBY_CB_Address);
+    if(chainId === 4){
+      const contract = new ethers.Contract(RINKEBY_CB_Address, CB_ABI, signer);
       setCBContract(contract);
       setChainName("Rinkeby")
     }
-    else if(networkId === 69){
-      const contract = new web3.eth.Contract(CB_ABI, OP_K_CB_Address);
+    else if(chainId === 69){
+      const contract = new ethers.Contract(OP_K_CB_Address, CB_ABI, signer);
       setCBContract(contract);
       setChainName("Optimistic Kovan")
     }
-    else if(networkId === 31949730){
-      const contract = new web3.eth.Contract(CB_ABI, CB_Address);
+    else if(chainId === 31949730){
+      const contract = new ethers.Contract(CB_Address, CB_ABI, signer);
       setCBContract(contract);
       setChainName("Skale")
     }

@@ -31,12 +31,12 @@ function Map({ cbContract }) {
   }, [cbContract]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function loadBodyGuard(map) {
-    const total = await cbContract.methods.bodyGuardCount().call()
+    const total = await cbContract.bodyGuardCount();
     console.log(total)
     //let temp = [];
 
     for(let i = 1; i <= total; i++){
-      const data = await cbContract.methods.bodyGuardList(i).call()
+      const data = await cbContract.bodyGuardList(i);
       console.log(data);
       if(data.isAvailable){
         new mapboxgl.Marker()

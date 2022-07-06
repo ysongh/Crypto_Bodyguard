@@ -14,10 +14,10 @@ function Signup({ ethAddress, cbContract}) {
   }, [cbContract])
   
   async function getBodyGuard() {
-    const total = await cbContract.methods.bodyGuardCount().call()
+    const total = await cbContract.bodyGuardCount();
 
     for(let i = 1; i <= total; i++){
-      const data = await cbContract.methods.bodyGuardList(i).call()
+      const data = await cbContract.bodyGuardList(i);
       console.log(data);
       if(data.from === ethAddress){
         setGuardData(data);
@@ -29,11 +29,10 @@ function Signup({ ethAddress, cbContract}) {
   async function createBodyGuard() {
     try{
       setLoading(true);
-      const tx = await cbContract.methods
-        .newBodyGuard(city)
-        .send({ from: ethAddress })
+      const transaction = await cbContract.newBodyGuard(city);
+      const tx = await transaction.wait();
       console.log(tx);
-      setTransactionUrl(tx.blockHash);
+      setTransactionUrl(tx.transactionHash);
       setLoading(false);
     } catch(error) {
        console.error(error)
@@ -44,11 +43,10 @@ function Signup({ ethAddress, cbContract}) {
   async function updateBodyGuard() {
     try{
       setLoading(true);
-      const tx = await cbContract.methods
-        .setIsAvailable(guardData.id, lng, lat)
-        .send({ from: ethAddress })
+      const transaction = await cbContract.setIsAvailable(guardData.id, lng, lat);
+      const tx = await transaction.wait();
       console.log(tx);
-      setTransactionUrl(tx.blockHash);
+      setTransactionUrl(tx.transactionHash);
       setLoading(false);
     } catch(error) {
        console.error(error)
