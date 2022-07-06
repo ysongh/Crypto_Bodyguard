@@ -63,11 +63,6 @@ function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner }) {
             </li>
             <li className="nav-item">
               <a className="nav-link" aria-current="page">
-                <Link href="/chat">Chat</Link>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" aria-current="page">
                 <Link href="/signup">Signup</Link>
               </a>
             </li>

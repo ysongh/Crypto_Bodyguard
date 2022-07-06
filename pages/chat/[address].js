@@ -1,12 +1,15 @@
 import React, { useState }  from 'react';
-import type { AppProps } from 'next/app';
 import { Client } from '@xmtp/xmtp-js';
+import { useRouter } from 'next/router';
 
-function Chat({ userSigner }: AppProps) {
+function Chat({ userSigner }) {
+  const router = useRouter();
+  const { address } = router.query;
+
   const [xmtpMethod, setxmtpMethod] = useState(null);
   const [conversationMethod, setconversationMethod] = useState(null);
   const [messagesList, setMessagesList] = useState([]);
-  const [toAddress, setToAddress] = useState("");
+  const [toAddress, setToAddress] = useState(address);
   const [newMessage, setNewMessage] = useState("");
 
   const connect = async () => {
@@ -44,7 +47,7 @@ function Chat({ userSigner }: AppProps) {
             <h2>Chat</h2>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address to Chat With</label>
-              <input className="form-control" id="address" onChange={(e) => setToAddress(e.target.value)}/>
+              <input className="form-control" id="address" value={toAddress} onChange={(e) => setToAddress(e.target.value)}/>
             </div>
             <div className="mb-3">
               <button className="btn btn-primary btn-lg mb-3" onClick={chatWith}>

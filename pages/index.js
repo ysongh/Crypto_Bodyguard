@@ -32,7 +32,10 @@ function Index({ cbContract }) {
               <div className="card-body">
                 <h5 className="card-title">{b.from}</h5>
                 <p className="card-text">{b.city}</p>
-                <button className="btn btn-primary"  onClick={() => router.push(`/sendThankyou/${b.from}`)}>
+                <button className="btn btn-primary me-1"  onClick={() => router.push(`/chat/${b.from}`)}>
+                  Chat 
+                </button>
+                <button className="btn btn-success"  onClick={() => router.push(`/sendThankyou/${b.from}`)}>
                   Send Thank You NFT
                 </button>
               </div>
