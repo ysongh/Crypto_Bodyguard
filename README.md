@@ -5,7 +5,7 @@ A Dapp where you can hire bodyguard and pay them with Crypto
 
 ## Technologies
 - Next.js
-- Bootstrap 4
+- Tailwind CSS
 - Truffle
 - Ethers.js
 - NFTPort API

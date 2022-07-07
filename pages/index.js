@@ -23,19 +23,19 @@ function Index({ cbContract }) {
   }
 
   return (
-    <div className='container'>
-      <h1>List of BodyGuard</h1>
-      <div className='row'>
+    <div className='container mx-auto'>
+      <h1 className="text-3xl mt-3 mb-2">List of BodyGuard</h1>
+      <div className="grid grid-cols-2 gap-5">
         {bodyGuards.map(b => (
            <div className='col-6' key={b.id}>
-            <div className="card">
-              <div className="card-body">
+            <div className="bg-white rounded shadow">
+              <div className="p-3">
                 <h5 className="card-title">{b.from}</h5>
                 <p className="card-text">{b.city}</p>
-                <button className="btn btn-primary me-1"  onClick={() => router.push(`/chat/${b.from}`)}>
+                <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 mr-2"  onClick={() => router.push(`/chat/${b.from}`)}>
                   Chat 
                 </button>
-                <button className="btn btn-success"  onClick={() => router.push(`/sendThankyou/${b.from}`)}>
+                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => router.push(`/sendThankyou/${b.from}`)}>
                   Send Thank You NFT
                 </button>
               </div>
