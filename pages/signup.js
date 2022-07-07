@@ -55,21 +55,21 @@ function Signup({ ethAddress, cbContract}) {
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
       {guardData.from
-        ?  <div className="card card-body m-auto w-50 mt-3">
-            <h2>Set Available</h2>
+        ?  <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
+            <h2 className="text-2xl mt-3 mb-2">Set Available</h2>
             <div className="mb-3">
-              <label htmlFor="longitude" className="form-label">Longitude</label>
-              <input className="form-control" id="longitude" onChange={(e) => setLng(e.target.value)}/>
+              <label htmlFor="longitude" className="block font-medium text-gray-700">Longitude</label>
+              <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="longitude" onChange={(e) => setLng(e.target.value)}/>
             </div>
             <div className="mb-3">
-              <label htmlFor="latitude" className="form-label">Latitude</label>
-              <input className="form-control" id="latitude" onChange={(e) => setLat(e.target.value)}/>
+              <label htmlFor="latitude" className="block font-medium text-gray-700">Latitude</label>
+              <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="latitude" onChange={(e) => setLat(e.target.value)}/>
             </div>
             <div className="mb-3">
               {!loading
-                ? <button className="btn btn-primary btn-lg mb-3" onClick={updateBodyGuard}>
+                ? <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={updateBodyGuard}>
                     Update
                   </button>
                 : <p>Loading...</p>
@@ -84,15 +84,18 @@ function Signup({ ethAddress, cbContract}) {
               </p>
             }
           </div>
-        : <div className="card card-body m-auto w-50 mt-3">
-            <h2>Sign up to be BodyGuard</h2>
+        : <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
+            <h2 className="text-2xl mt-3 mb-2">Sign up to be BodyGuard</h2>
             <div className="mb-3">
-              <label htmlFor="city" className="form-label">City</label>
-              <input className="form-control" id="city" onChange={(e) => setCity(e.target.value)}/>
+              <label htmlFor="city" className="block font-medium text-gray-700">City</label>
+              <input
+                className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm"
+                id="city"
+                onChange={(e) => setCity(e.target.value)}/>
             </div>
             <div className="mb-3">
               {!loading
-                ? <button className="btn btn-primary btn-lg mb-3" onClick={createBodyGuard}>
+                ? <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={createBodyGuard}>
                     Create
                   </button>
                 : <p>Loading...</p>
