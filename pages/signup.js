@@ -6,8 +6,7 @@ function Signup({ ethAddress, cbContract}) {
   const [transactionUrl, setTransactionUrl] = useState('');
   const [guardData, setGuardData] = useState({});
 
-  const [lng, setLng] = useState();
-  const [lat, setLat] = useState();
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     if(cbContract) getBodyGuard();
@@ -43,7 +42,11 @@ function Signup({ ethAddress, cbContract}) {
   async function updateBodyGuard() {
     try{
       setLoading(true);
-      const transaction = await cbContract.setIsAvailable(guardData.id, lng, lat);
+      const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?proximity=ip&types=place&access_token=${process.env.NEXT_PUBLIC_MAPBOX_API}`);
+      const geodata = await res.json();
+      console.log(geodata, geodata.features[0].center[0], geodata.features[0].center[1]);
+
+      const transaction = await cbContract.setIsAvailable(guardData.id, geodata.features[0].center[0], geodata.features[0].center[1]);
       const tx = await transaction.wait();
       console.log(tx);
       setTransactionUrl(tx.transactionHash);
@@ -60,12 +63,8 @@ function Signup({ ethAddress, cbContract}) {
         ?  <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
             <h2 className="text-2xl mt-3 mb-2">Set Available</h2>
             <div className="mb-3">
-              <label htmlFor="longitude" className="block font-medium text-gray-700">Longitude</label>
-              <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="longitude" onChange={(e) => setLng(e.target.value)}/>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="latitude" className="block font-medium text-gray-700">Latitude</label>
-              <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="latitude" onChange={(e) => setLat(e.target.value)}/>
+              <label htmlFor="location" className="block font-medium text-gray-700">Enter Where you At</label>
+              <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="location" onChange={(e) => setLocation(e.target.value)}/>
             </div>
             <div className="mb-3">
               {!loading
