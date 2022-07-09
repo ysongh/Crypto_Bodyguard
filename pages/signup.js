@@ -46,7 +46,7 @@ function Signup({ ethAddress, cbContract}) {
       const geodata = await res.json();
       console.log(geodata, geodata.features[0].center[0], geodata.features[0].center[1]);
 
-      const transaction = await cbContract.setIsAvailable(guardData.id, geodata.features[0].center[0], geodata.features[0].center[1]);
+      const transaction = await cbContract.setIsAvailable(guardData.id, geodata.features[0].center[0].toString(), geodata.features[0].center[1].toString());
       const tx = await transaction.wait();
       console.log(tx);
       setTransactionUrl(tx.transactionHash);
