@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import { Client } from '@xmtp/xmtp-js';
 import { useRouter } from 'next/router';
 
-function Chat({ userSigner }) {
+function Chat({ userSigner, ethAddress }) {
   const router = useRouter();
   const { address } = router.query;
 
@@ -40,33 +40,43 @@ function Chat({ userSigner }) {
   }
 
   return (
-    <div className='container'>
+    <div className="container mx-auto">
       {!xmtpMethod
-        ? <button className='btn btn-primary' onClick={connect}>Connect</button>
-        : <div className="card card-body m-auto w-50 mt-3">
+        ? <div className="bg-white p-3 rounded shadow w-4/12 mx-auto">
+            <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={connect}>
+              Connect Wallet to Chat
+            </button>
+            <p className="mt-1">With XMTP</p>
+          </div>
+        : <div className="bg-white p-3 rounded shadow w-4/12 mx-auto">
             <h2>Chat</h2>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address to Chat With</label>
-              <input className="form-control" id="address" value={toAddress} onChange={(e) => setToAddress(e.target.value)}/>
+              <input
+                className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm"
+                id="address" 
+                value={toAddress}
+                onChange={(e) => setToAddress(e.target.value)}/>
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary btn-lg mb-3" onClick={chatWith}>
+              <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={chatWith}>
                 Chat
               </button>
             </div>
           </div>
       }
-      {conversationMethod && <div className="card card-body m-auto w-50 mt-3">
+      {conversationMethod && <div className="bg-white p-3 rounded shadow">
         <h2>Messages to {toAddress}</h2>
         {messagesList.map(m => (
-          <p key={m.id}>{m.content}</p>
+          <p className={m.senderAddress === ethAddress ? "text-right" : ""} key={m.id}>
+            {m.content}
+          </p>
         ))}
         <div className="mb-3">
-          <label htmlFor="message" className="form-label">Message</label>
-          <input className="form-control" id="message" onChange={(e) => setNewMessage(e.target.value)}/>
+          <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="message" onChange={(e) => setNewMessage(e.target.value)} placeholder="Message..." />
         </div>
         <div className="mb-3">
-          <button className="btn btn-primary btn-lg mb-3" onClick={sendMessage}>
+          <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400" onClick={sendMessage}>
             Send Message
           </button>
         </div>
