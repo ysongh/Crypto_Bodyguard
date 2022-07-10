@@ -57,6 +57,7 @@ function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner }) {
         </div>
         <div className="hidden md:flex space-x-5">
           <Link href="/" className="hover:text-blue">Home</Link>
+          <Link href="/listofbodyguard">List Of Bodyguard</Link>
           <Link href="/signup">Signup</Link>
           <Link href="/map">Map</Link>
         </div>
