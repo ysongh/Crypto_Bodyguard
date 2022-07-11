@@ -7,7 +7,7 @@ contract CryptoBodyguard {
 
     struct BodyGuard {
       uint id;
-      string city;
+      string dataCid;
       string longitude;
       string latitude;
       bool isAvailable;
@@ -16,18 +16,18 @@ contract CryptoBodyguard {
 
     event NewBodyGuard (
       uint id,
-      string city,
+      string dataCid,
       address from
     );
 
     constructor() {
     }
 
-    function newBodyGuard(string memory _city) public {
+    function newBodyGuard(string memory _dataCid) public {
         bodyGuardCount += 1;
 
-        bodyGuardList[bodyGuardCount] = BodyGuard(bodyGuardCount, _city, "", "", false, msg.sender);
-        emit NewBodyGuard(bodyGuardCount, _city, msg.sender);
+        bodyGuardList[bodyGuardCount] = BodyGuard(bodyGuardCount, _dataCid, "", "", false, msg.sender);
+        emit NewBodyGuard(bodyGuardCount, _dataCid, msg.sender);
     }
 
     function setIsAvailable(uint _id, string memory _longitude, string memory _latitude) public {
