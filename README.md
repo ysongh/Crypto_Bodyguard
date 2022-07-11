@@ -9,6 +9,7 @@ A Dapp where you can hire bodyguard and pay them with Crypto
 - Truffle
 - Ethers.js
 - NFTPort API
+- web3.storage
 
 ## Getting Started
 
@@ -20,6 +21,7 @@ Add the following to `.env.local` in the project's root.
 NEXT_PUBLIC_INFURA_ID={YOUR_INFURA_ID}
 NEXT_PUBLIC_NFTPORT_API={YOUR_NFTPORT_API}
 NEXT_PUBLIC_MAPBOX_API={YOUR_MAPBOX_API}
+NEXT_PUBLIC_WEB3STORAGE_APIKEY={YOUR_WEB3STORAGE_APIKEY}
 ```
 
 ### Install the package
