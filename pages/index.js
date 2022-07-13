@@ -3,16 +3,16 @@ import React from 'react';
 function index() {
   return (
     <div className="h-full">
-      <div className="bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url(/hero-img.png)", height: "677px"}}>
-        <div style={{ background: "rgba(0,0,0,0.3)", height: "inherit"}}>
-          <h1 className="text-center text-6xl pt-56 text-white">
+      <div className="block bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url(/hero-img.png)", height: "677px"}}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 backdrop-brightness-50 py-8 px-4 rounded-lg" style={{maxWidth: "650px"}}>
+          <h1 className="text-center text-5xl text-white uppercase">
             Your safety is very important
           </h1>
-          <p className="text-center text-2xl mt-5 mb-6 text-white">
+          <p className="text-center text-2xl mt-5 mb-6 text-white ">
             Hire a bodyguard and pay them with Crypto
           </p>
           <center>
-            <button className="py-4 px-6 text-white bg-teal-600 rounded baseline hover:bg-blue-400">
+            <button className="py-4 px-6 text-white bg-blue-600 rounded baseline hover:bg-blue-400">
               Get Started
             </button>
           </center>
