@@ -1,6 +1,9 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 function index() {
+  const router = useRouter();
+
   return (
     <div className="h-full">
       <div className="block bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url(/hero-img.png)", height: "677px"}}>
@@ -12,7 +15,7 @@ function index() {
             Hire a bodyguard and pay them with Crypto
           </p>
           <center>
-            <button className="py-4 px-6 text-white bg-blue-600 rounded baseline hover:bg-blue-400">
+            <button className="py-4 px-6 text-white bg-blue-600 rounded baseline hover:bg-blue-400" onClick={() => router.push(`/main`)}>
               Get Started
             </button>
           </center>
