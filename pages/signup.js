@@ -124,7 +124,7 @@ function Signup({ ethAddress, cbContract}) {
             <label htmlFor="userPhoto" className="block font-medium text-gray-700 mb-2">Upload your photo</label>
             <div className="flex items-center space-x-6 mb-2">
               <div className="shrink-0">
-                <img className="h-16 w-16 object-cover rounded-full" src={imageFile && URL.createObjectURL(imageFile)} alt="Current profile photo" />
+                {imageFile && <img className="h-16 w-16 object-cover rounded-full" src={URL.createObjectURL(imageFile)} alt="Current profile photo" /> }
               </div>
               <label className="block">
                 <span className="sr-only">Choose profile photo</span>
