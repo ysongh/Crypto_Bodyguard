@@ -14,14 +14,9 @@ contract CryptoBodyguard {
       address from;
     }
 
-    event NewBodyGuard (
-      uint id,
-      string dataCid,
-      address from
-    );
+    event NewBodyGuard ( uint id, string dataCid, address from );
 
-    constructor() {
-    }
+    constructor() {}
 
     function newBodyGuard(string memory _dataCid) public {
         bodyGuardCount += 1;
