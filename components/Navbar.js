@@ -10,7 +10,7 @@ import {
   OP_K_CB_Address
 } from '../config';
 
-function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner }) {
+function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner, navbarMode }) {
   const [chainName, setChainName] = useState('');
 
   const openWithMetaMask = async () => {
@@ -55,12 +55,24 @@ function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner }) {
             <img className="h-12 cursor-pointer" src="/logo.png" alt="Logo" />
           </Link>
         </div>
-        <div className="hidden md:flex space-x-5">
+
+        {navbarMode === ""
+          && <div className="hidden md:flex space-x-5">
+          <Link href="/" className="hover:text-blue">Home</Link>
+        </div>}
+        {navbarMode === "user"
+          && <div className="hidden md:flex space-x-5">
           <Link href="/" className="hover:text-blue">Home</Link>
           <Link href="/listofbodyguard">List Of Bodyguard</Link>
-          <Link href="/signup">Signup</Link>
           <Link href="/map">Map</Link>
-        </div>
+        </div>}
+        {navbarMode === "bodyguard"
+          && <div className="hidden md:flex space-x-5">
+          <Link href="/" className="hover:text-blue">Home</Link>
+          <Link href="/signup">Profile</Link>
+          <Link href="/map">Map</Link>
+        </div>}
+        
         <div className="flex">
         {chainName && <span className="py-2 px-4 font-semibold italic mr-1">{chainName}</span>}
           <button className="py-2 px-4 text-white bg-blue-600 rounded-full baseline hover:bg-blue-400" onClick={openWithMetaMask}>

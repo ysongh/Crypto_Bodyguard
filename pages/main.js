@@ -1,8 +1,18 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-function main() {
+function main({ setNavbarMode }) {
   const router = useRouter();
+
+  const selectUser = () => {
+    setNavbarMode("user");
+    router.push(`/listofbodyguard`)
+  }
+
+  const selectBodyguard = () => {
+    setNavbarMode("bodyguard");
+    router.push(`/signup`)
+  }
 
   return (
     <div className="container mx-auto">
@@ -16,7 +26,7 @@ function main() {
               <p className="text-gray-500 mb-3">
                 Find a bodyguard who can protect you
               </p>
-              <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full"  onClick={() => router.push(`/listofbodyguard`)}>
+              <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full"  onClick={selectUser}>
                 Find 
               </button>
             </div>
@@ -31,7 +41,7 @@ function main() {
               <p className="text-gray-500 mb-3">
                 Sign up to be a bodyguard and protect someone
               </p>
-              <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full"  onClick={() => router.push(`/signup`)}>
+              <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full"  onClick={selectBodyguard}>
                 Sign Up 
               </button>
             </div>
