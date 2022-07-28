@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/globals.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import type { AppProps } from 'next/app'
-import Navbar from '../components/Navbar';
+import Navbar from '../components/layout/Navbar';
 
 function AppWrapper({ Component, pageProps }: AppProps) {
   const [ethAddress, setETHAddress] = useState('');

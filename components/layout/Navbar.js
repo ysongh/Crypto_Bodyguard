@@ -9,7 +9,7 @@ import {
   RINKEBY_CB_Address,
   CB_Address,
   OP_K_CB_Address
-} from '../config';
+} from '../../config';
 
 function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner, navbarMode }) {
   const router = useRouter();
