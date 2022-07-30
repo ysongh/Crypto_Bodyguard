@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../styles/globals.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import type { AppProps } from 'next/app'
+
+import Head from '../components/layout/Header';
 import Navbar from '../components/layout/Navbar';
 
 function AppWrapper({ Component, pageProps }: AppProps) {
@@ -11,6 +13,7 @@ function AppWrapper({ Component, pageProps }: AppProps) {
   const [navbarMode, setNavbarMode] = useState("");
 
   return <div>
+    <Head title="Crypto Bodyguard" />
     <Navbar
       ethAddress={ethAddress}
       setETHAddress={setETHAddress}
