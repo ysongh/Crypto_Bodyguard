@@ -18,21 +18,21 @@ contract CryptoBodyguard {
 
     constructor() {}
 
-    function newBodyGuard(string memory _dataCid) public {
+    function newBodyGuard(string memory _dataCid) external {
         bodyGuardCount += 1;
 
         bodyGuardList[bodyGuardCount] = BodyGuard(bodyGuardCount, _dataCid, "", "", false, msg.sender);
         emit NewBodyGuard(bodyGuardCount, _dataCid, msg.sender);
     }
 
-    function setIsAvailable(uint _id, string memory _longitude, string memory _latitude) public {
+    function setIsAvailable(uint _id, string memory _longitude, string memory _latitude) external {
         BodyGuard storage _currentGuard = bodyGuardList[_id];
         _currentGuard.longitude = _longitude;
         _currentGuard.latitude = _latitude;
         _currentGuard.isAvailable = true;
     }
 
-    function setIsNotAvailable(uint _id) public {
+    function setIsNotAvailable(uint _id) external {
         BodyGuard storage _currentGuard = bodyGuardList[_id];
         _currentGuard.isAvailable = false;
     }
