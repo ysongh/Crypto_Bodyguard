@@ -28,6 +28,14 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    // truffle migrate --network mumbai
+    mumbai: {
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_KEY2}`),
+      network_id: "80001",
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
