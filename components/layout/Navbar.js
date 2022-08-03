@@ -8,7 +8,8 @@ import {
   CB_ABI,
   RINKEBY_CB_Address,
   CB_Address,
-  OP_K_CB_Address
+  OP_K_CB_Address,
+  POLYGON_ADDRESS
 } from '../../config';
 
 function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner, navbarMode }) {
@@ -32,7 +33,7 @@ function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner, navba
     if(chainId === 4){
       const contract = new ethers.Contract(RINKEBY_CB_Address, CB_ABI, signer);
       setCBContract(contract);
-      setChainName("Rinkeby")
+      setChainName("Rinkeby");
     }
     else if(chainId === 69){
       const contract = new ethers.Contract(OP_K_CB_Address, CB_ABI, signer);
@@ -42,7 +43,12 @@ function Navbar({ ethAddress, setETHAddress, setCBContract, setUserSigner, navba
     else if(chainId === 31949730){
       const contract = new ethers.Contract(CB_Address, CB_ABI, signer);
       setCBContract(contract);
-      setChainName("Skale")
+      setChainName("Skale");
+    }
+    else if(chainId === 80001){
+      const contract = new ethers.Contract(POLYGON_ADDRESS, CB_ABI, signer);
+      setCBContract(contract);
+      setChainName("Polygon Testnet");
     }
     else{
       alert("No contract for this network");
