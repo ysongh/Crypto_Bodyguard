@@ -1,15 +1,67 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-function main({ setNavbarMode }) {
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';
+
+import {
+  CB_ABI,
+  RINKEBY_CB_Address,
+  CB_Address,
+  OP_K_CB_Address,
+  POLYGON_ADDRESS
+} from '../config';
+
+function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setChainName }) {
   const router = useRouter();
 
+  const openWithMetaMask = async () => {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+
+    const provider = new ethers.providers.Web3Provider(connection);  
+    console.log(provider);
+    const { chainId } = await provider.getNetwork();
+
+    const signer = provider.getSigner();
+    setUserSigner(signer);
+    const address = await signer.getAddress();
+    setETHAddress(address);
+
+    if(chainId === 4){
+      const contract = new ethers.Contract(RINKEBY_CB_Address, CB_ABI, signer);
+      setCBContract(contract);
+      setChainName("Rinkeby");
+    }
+    else if(chainId === 69){
+      const contract = new ethers.Contract(OP_K_CB_Address, CB_ABI, signer);
+      setCBContract(contract);
+      setChainName("Optimistic Kovan")
+    }
+    else if(chainId === 31949730){
+      const contract = new ethers.Contract(CB_Address, CB_ABI, signer);
+      setCBContract(contract);
+      setChainName("Skale");
+    }
+    else if(chainId === 80001){
+      const contract = new ethers.Contract(POLYGON_ADDRESS, CB_ABI, signer);
+      setCBContract(contract);
+      setChainName("Polygon Testnet");
+    }
+    else{
+      alert("No contract for this network");
+    }
+
+  }
+
   const selectUser = () => {
+    openWithMetaMask();
     setNavbarMode("user");
     router.push(`/listofbodyguard`)
   }
 
   const selectBodyguard = () => {
+    openWithMetaMask();
     setNavbarMode("bodyguard");
     router.push(`/signup`)
   }
