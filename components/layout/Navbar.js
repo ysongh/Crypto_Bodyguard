@@ -27,7 +27,7 @@ function Navbar({ ethAddress, navbarMode, chainName }) {
         {navbarMode === "bodyguard"
           && <div className="hidden md:flex space-x-5">
           <Link href="/" className="hover:text-blue">Home</Link>
-          <Link href="/signup">Profile</Link>
+          <Link href="/profile">Profile</Link>
           <Link href="/map">Map</Link>
         </div>}
         
