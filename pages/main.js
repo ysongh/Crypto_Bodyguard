@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useRouter } from 'next/router';
 
 import { ethers } from 'ethers';
@@ -63,7 +63,7 @@ function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setC
   const selectBodyguard = () => {
     openWithMetaMask();
     setNavbarMode("bodyguard");
-    router.push(`/signup`)
+    router.push(`/signup`);
   }
 
   return (

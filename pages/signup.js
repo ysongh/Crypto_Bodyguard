@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Web3Storage } from 'web3.storage';
 
 const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_APIKEY });
 
-function Signup({ cbContract }) {
+function Signup({ ethAddress, cbContract }) {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState(false);
   const [transactionUrl, setTransactionUrl] = useState('');
+
+  useEffect(() => {
+    if(cbContract) getBodyGuard();
+  }, [cbContract])
+  
+  async function getBodyGuard() {
+    const total = await cbContract.bodyGuardCount();
+
+    for(let i = 1; i <= total; i++){
+      const data = await cbContract.bodyGuardList(i);
+      console.log(data);
+      if(data.from === ethAddress){
+        router.push(`/profile`);
+      }
+    }
+  }
 
   async function handleUpload(event) {
     const image = event.target.files[0];
