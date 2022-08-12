@@ -59,7 +59,7 @@ function profile({ ethAddress, cbContract }) {
         {transactionUrl &&
           <p className="text-success" style={{ fontSize: '1.4rem'}}>
             Success, see transaction {" "}
-            <a href={`https://expedition.dev/block/${transactionUrl}?rpcUrl=https://hackathon.skalenodes.com/v1/hoarse-well-made-theemim`} target="_blank" rel="noopener noreferrer">
+            <a href={`https://mumbai.polygonscan.com/tx/${transactionUrl}`} target="_blank" rel="noopener noreferrer">
                 {transactionUrl}
             </a>
           </p>
