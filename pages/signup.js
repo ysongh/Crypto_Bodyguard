@@ -53,7 +53,7 @@ function Signup({ ethAddress, cbContract }) {
 
       console.log(`https://dweb.link/ipfs/${cid}`);
 
-      const transaction = await cbContract.newBodyGuard(city);
+      const transaction = await cbContract.newBodyGuard(`https://dweb.link/ipfs/${cid}`);
       const tx = await transaction.wait();
       console.log(tx);
       setTransactionUrl(tx.transactionHash);
