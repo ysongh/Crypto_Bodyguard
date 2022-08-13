@@ -24,7 +24,7 @@ function Signup({ ethAddress, cbContract }) {
       const data = await cbContract.bodyGuardList(i);
       console.log(data);
       if(data.from === ethAddress){
-        router.push(`/profile`);
+        //router.push(`/profile`);
       }
     }
   }
@@ -39,7 +39,7 @@ function Signup({ ethAddress, cbContract }) {
     try{
       setLoading(true);
 
-      const bodyguardData = JSON.stringify({ name: name, city: city });
+      const bodyguardData = JSON.stringify({ name: name, city: city, imageName: imageFile.name });
       const blob = new Blob([bodyguardData], {type: "text/plain"});
       const bodyguardDataFile = new File([ blob ], 'bodyguardData.json');
 
