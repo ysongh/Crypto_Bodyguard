@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 function Navbar({ ethAddress, navbarMode, chainName }) {
   const router = useRouter();
 
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <nav className="relative container mx-auto p-2">
       <div className="flex items-center justify-between">
@@ -37,9 +39,21 @@ function Navbar({ ethAddress, navbarMode, chainName }) {
           </button>
           : <div className="flex">
               {chainName && <span className="py-2 px-4 font-semibold italic mr-1">{chainName}</span>}
-              <button className="py-2 px-4 text-white bg-blue-600 rounded-full baseline hover:bg-blue-400">
-                {ethAddress ? ethAddress.substring(0,8) + "..." + ethAddress.substring(34,42) : "Connect to Wallet"}
-              </button>
+              {ethAddress
+                ? <div className="ml-3 relative">
+                    <button className="py-2 px-4 text-white bg-blue-600 rounded-full baseline hover:bg-blue-400"  onClick={() => setShowMenu(!showMenu)}>
+                      {ethAddress.substring(0,8) + "..." + ethAddress.substring(34,42)}
+                    </button>
+                    
+                    {showMenu && <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</a>
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign Out</a>
+                    </div>}
+                  </div>
+                : <button className="py-2 px-4 text-white bg-blue-600 rounded-full baseline hover:bg-blue-400">
+                    Connect to Wallet
+                  </button>
+              }
             </div>
         }
       </div>
