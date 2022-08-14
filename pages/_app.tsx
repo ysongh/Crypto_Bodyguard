@@ -18,7 +18,8 @@ function AppWrapper({ Component, pageProps }: AppProps) {
     <Navbar
       ethAddress={ethAddress}
       navbarMode={navbarMode}
-      chainName={chainName} />
+      chainName={chainName}
+      setNavbarMode={setNavbarMode} />
     <Component
       {...pageProps}
       ethAddress={ethAddress}

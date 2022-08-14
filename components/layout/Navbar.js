@@ -2,10 +2,16 @@ import React, { useState }  from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-function Navbar({ ethAddress, navbarMode, chainName }) {
+function Navbar({ ethAddress, navbarMode, chainName, setNavbarMode }) {
   const router = useRouter();
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const signOut = () => {
+    router.push("/");
+    setNavbarMode("");
+    setShowMenu(false);
+  }
 
   return (
     <nav className="relative container mx-auto p-2">
@@ -46,8 +52,9 @@ function Navbar({ ethAddress, navbarMode, chainName }) {
                     </button>
                     
                     {showMenu && <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign Out</a>
+                      <button className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1" onClick={signOut}>
+                        Sign Out
+                      </button>
                     </div>}
                   </div>
                 : <button className="py-2 px-4 text-white bg-blue-600 rounded-full baseline hover:bg-blue-400">
