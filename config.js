@@ -1,7 +1,7 @@
 export const RINKEBY_CB_Address = "0x702a3fefe8B324e7Be41911be25Dde714077f1d9"
 export const OP_K_CB_Address = "0xe6E7d8636fdff2e3563e00a29A8864554F410714"
 export const CB_Address = "0x644D3bE977e264C02ABBbFcA59FA78e86feeE395"
-export const POLYGON_ADDRESS = "0x9C0a7a6d2807190C09F2F4412aFEd79AE94911CC"
+export const POLYGON_ADDRESS = "0xB1b8e37667904c06950773B0bdf779b891b19611"
 export const CB_ABI = [
 	{
 		"inputs": [

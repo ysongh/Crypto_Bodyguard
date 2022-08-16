@@ -24,7 +24,7 @@ function Signup({ ethAddress, cbContract }) {
       const data = await cbContract.bodyGuardList(i);
       console.log(data);
       if(data.from === ethAddress){
-        //router.push(`/profile`);
+        router.push(`/profile`);
       }
     }
   }
