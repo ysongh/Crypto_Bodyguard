@@ -57,10 +57,10 @@ function profile({ ethAddress, cbContract }) {
           }
         </div>
         {transactionUrl &&
-          <p className="text-success" style={{ fontSize: '1.4rem'}}>
+          <p className="text-lg">
             Success, see transaction {" "}
             <a href={`https://mumbai.polygonscan.com/tx/${transactionUrl}`} target="_blank" rel="noopener noreferrer">
-                {transactionUrl}
+              {transactionUrl.substring(0, 10) + '...' + transactionUrl.substring(56, 66)}
             </a>
           </p>
         }
