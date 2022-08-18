@@ -38,13 +38,21 @@ function Map({ cbContract }) {
     for(let i = 1; i <= total; i++){
       const data = await cbContract.bodyGuardList(i);
       console.log(data);
+
       if(data.isAvailable){
+        const res = await fetch(data.dataCid + "/bodyguardData.json");
+        const nftData = await res.json();
+
         new mapboxgl.Marker()
         .setLngLat([+data.longitude, +data.latitude])
         .setPopup(
           new mapboxgl.Popup({ offset: 25 })
             .setHTML(
-              `<h5>${data.from.substring(0,8) + "..." + data.from.substring(34,42)}</h5>`
+              `
+                <img src="${data.dataCid}/${nftData.imageName}" alt="Profile Photo" />
+                <h5>${nftData.name}</h5>
+                <p>${nftData.city}</p>
+              `
             )
         )
         .addTo(map);
