@@ -44,10 +44,10 @@ function ListOfBodyguard({ cbContract }) {
                   </div>
                 </div>
                 
-                <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 mr-2"  onClick={() => router.push(`/chat/${b.from}`)}>
+                <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 mr-2"  onClick={() => router.push(`/chat/${b.data.from}`)}>
                   Chat 
                 </button>
-                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => router.push(`/sendThankyou/${b.from}`)}>
+                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => router.push(`/sendThankyou/${b.data.from}`)}>
                   Send Thank You NFT
                 </button>
               </div>
