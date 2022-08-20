@@ -32,7 +32,7 @@ function Map({ cbContract }) {
 
   async function loadBodyGuard(map) {
     const total = await cbContract.bodyGuardCount();
-    console.log(total)
+    console.log(total);
     //let temp = [];
 
     for(let i = 1; i <= total; i++){
@@ -52,7 +52,7 @@ function Map({ cbContract }) {
                 <img src="${data.dataCid}/${nftData.imageName}" alt="Profile Photo" />
                 <h5>${nftData.name}</h5>
                 <p>${nftData.city}</p>
-                <a href="http://localhost:3000/chat/${data.from}" target="_blank" title="Chat Bodybody">Chat</a>
+                <a href="${window.location.origin}/chat/${data.from}" target="_blank" title="Chat Bodybody">Chat</a>
               `
             )
         )
