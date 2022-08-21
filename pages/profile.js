@@ -40,17 +40,36 @@ function profile({ ethAddress, cbContract }) {
     }  
   }
 
+  async function stopWork() {
+    try{
+      setLoading(true);
+
+      const transaction = await cbContract.setIsNotAvailable(guardData.id);
+      const tx = await transaction.wait();
+      console.log(tx);
+      setTransactionUrl(tx.transactionHash);
+      setLoading(false);
+    } catch(error) {
+       console.error(error)
+       setLoading(false);
+    }  
+  }
+
   return (
     <div className="container mx-auto">
       <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
-        <h2 className="text-2xl mt-3 mb-2">Set Available</h2>
-        <div className="mb-3">
+        <h2 className="text-2xl mt-3 mb-2">{guardData.isAvailable ? "Stop Work" : " Set Available"}</h2>
+        {!guardData.isAvailable && <div className="mb-3">
           <label htmlFor="location" className="block font-medium text-gray-700">Enter Where you At</label>
           <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="location" onChange={(e) => setLocation(e.target.value)}/>
-        </div>
+        </div>}
         <div className="mb-3">
           {!loading
-            ? <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={updateBodyGuard}>
+            ? guardData.isAvailable
+              ? <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={stopWork}>
+                  Stop
+                </button>
+              : <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={updateBodyGuard}>
                 Update
               </button>
             : <p>Loading...</p>
