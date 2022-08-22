@@ -66,7 +66,7 @@ function Signup({ ethAddress, cbContract }) {
 
   return (
     <div className="container mx-auto">
-      <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
+      <div className="bg-white p-3 rounded shadow w-5/12 mx-auto mt-10">
           <h2 className="text-2xl mt-3 mb-2">Sign up to be BodyGuard</h2>
           <div className="mb-3">
             <label htmlFor="name" className="block font-medium text-gray-700">Name</label>

@@ -30,7 +30,7 @@ function ListOfBodyguard({ cbContract }) {
 
   return (
     <div className='container mx-auto'>
-      <h1 className="text-3xl mt-3 mb-2">List of BodyGuard</h1>
+      <h1 className="text-3xl mt-4 mb-5">List of BodyGuard</h1>
       <div className="grid grid-cols-2 gap-5">
         {bodyGuards.map(b => (
            <div className='col-6' key={b.id}>

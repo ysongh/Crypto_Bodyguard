@@ -57,7 +57,7 @@ function profile({ ethAddress, cbContract }) {
 
   return (
     <div className="container mx-auto">
-      <div className="bg-white p-3 rounded shadow w-5/12 mx-auto">
+      <div className="bg-white p-3 rounded shadow w-5/12 mx-auto mt-10">
         <h2 className="text-2xl mt-3 mb-2">{guardData.isAvailable ? "Stop Work" : " Set Available"}</h2>
         {!guardData.isAvailable && <div className="mb-3">
           <label htmlFor="location" className="block font-medium text-gray-700">Enter Where you At</label>
