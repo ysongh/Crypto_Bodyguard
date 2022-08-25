@@ -10,6 +10,8 @@ A Dapp where you can hire bodyguard and pay them with Crypto
 - Ethers.js
 - NFTPort API
 - web3.storage
+- XMTP
+- Mapbox
 
 ## Getting Started
 
