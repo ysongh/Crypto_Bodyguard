@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-
+import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 
@@ -12,7 +12,7 @@ import {
   POLYGON_ADDRESS
 } from '../config';
 
-function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setChainName }) {
+function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setChainName, setsfMethods }) {
   const router = useRouter();
 
   const openWithMetaMask = async () => {
@@ -52,6 +52,14 @@ function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setC
       alert("No contract for this network");
     }
 
+    // Initializing Superfluid SDK Core
+    const sf = await Framework.create({
+      chainId: chainId, // you can also use chainId here instead
+      provider: provider
+    });
+    console.log(sf);
+
+    setsfMethods(sf);
   }
 
   const selectUser = () => {

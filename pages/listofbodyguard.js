@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 
-function ListOfBodyguard({ cbContract }) {
+function ListOfBodyguard({ cbContract, sfMethods, userSigner }) {
   const router = useRouter();
 
   const [bodyGuards, setbodyGuards] = useState([]);
@@ -28,6 +28,27 @@ function ListOfBodyguard({ cbContract }) {
     setbodyGuards(temp);
   }
 
+  const sendDai = async (recipient) => {
+    try {
+      const DAIxContract = await sfMethods.loadSuperToken("fDAIx");
+      const DAIx = DAIxContract.address;
+      console.log(DAIx);
+
+      const createFlowOperation = sfMethods.cfaV1.createFlow({
+        receiver: recipient,
+        flowRate: "1",
+        superToken: DAIx,
+      });
+  
+      console.log("Creating your stream...");
+  
+      const result = await createFlowOperation.exec(userSigner);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  } 
+
   return (
     <div className='container mx-auto'>
       <h1 className="text-3xl mt-4 mb-5">List of BodyGuard</h1>
@@ -49,6 +70,9 @@ function ListOfBodyguard({ cbContract }) {
                 </button>
                 <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => router.push(`/sendThankyou/${b.data.from}`)}>
                   Send Thank You NFT
+                </button>
+                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => sendDai(b.data.from)}>
+                  Send Dai
                 </button>
               </div>
             </div>

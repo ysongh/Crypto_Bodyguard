@@ -12,6 +12,7 @@ function AppWrapper({ Component, pageProps }: AppProps) {
   const [cbContract, setCBContract] = useState(null);
   const [navbarMode, setNavbarMode] = useState("");
   const [chainName, setChainName] = useState('');
+  const [sfMethods, setsfMethods] = useState(null);
 
   return <div>
     <Head title="Crypto Bodyguard" />
@@ -29,7 +30,9 @@ function AppWrapper({ Component, pageProps }: AppProps) {
       setETHAddress={setETHAddress}
       setCBContract={setCBContract}
       setUserSigner={setUserSigner}
-      setChainName={setChainName} />
+      setChainName={setChainName}
+      sfMethods={sfMethods}
+      setsfMethods={setsfMethods} />
   </div>
   
 }
