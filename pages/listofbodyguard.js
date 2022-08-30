@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 
-function ListOfBodyguard({ cbContract, sfMethods, userSigner }) {
+function ListOfBodyguard({ ethAddress, cbContract, sfMethods, userSigner }) {
   const router = useRouter();
 
   const [bodyGuards, setbodyGuards] = useState([]);
@@ -9,6 +9,27 @@ function ListOfBodyguard({ cbContract, sfMethods, userSigner }) {
   useEffect(() => {
     if(cbContract) fetchBodyguard();
   }, [cbContract])
+
+  const getFlowInfo = async (receiver) => {
+    try {
+      const DAIxContract = await sfMethods.loadSuperToken("fDAIx");
+      const DAIx = DAIxContract.address;
+      console.log(DAIx);
+
+      const result = await sfMethods.cfaV1.getFlow({
+        superToken: DAIx,
+        sender: ethAddress,
+        receiver: receiver,
+        providerOrSigner: userSigner
+      });
+      
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  } 
   
   const fetchBodyguard = async () => {
     const total = await cbContract.bodyGuardCount();
@@ -22,6 +43,7 @@ function ListOfBodyguard({ cbContract, sfMethods, userSigner }) {
       newData.id = data.id;
       newData.data = data;
       newData.nftData = nftData;
+      newData.sf = await getFlowInfo(data.from);
       console.log(newData);
       temp.push(newData);
     }
@@ -68,12 +90,18 @@ function ListOfBodyguard({ cbContract, sfMethods, userSigner }) {
                 <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400 mr-2"  onClick={() => router.push(`/chat/${b.data.from}`)}>
                   Chat 
                 </button>
-                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => router.push(`/sendThankyou/${b.data.from}`)}>
+                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400 mb-2"  onClick={() => router.push(`/sendThankyou/${b.data.from}`)}>
                   Send Thank You NFT
                 </button>
-                <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => sendDai(b.data.from)}>
-                  Send Dai
-                </button>
+                <br />
+                {b.sf.flowRate > 0 
+                  ? <>
+                      <p>Deposit: {b.sf.deposit}</p>
+                      <p>FlowRate: {b.sf.flowRate}</p>
+                    </>
+                  : <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => sendDai(b.data.from)}>
+                    Send Dai
+                  </button> }
               </div>
             </div>
           </div>
