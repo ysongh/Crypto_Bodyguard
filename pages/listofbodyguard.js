@@ -27,7 +27,7 @@ function ListOfBodyguard({ ethAddress, cbContract, sfMethods, userSigner }) {
       return result;
     } catch (error) {
       console.error(error);
-      return null;
+      return "";
     }
   } 
   
@@ -56,7 +56,7 @@ function ListOfBodyguard({ ethAddress, cbContract, sfMethods, userSigner }) {
       const DAIx = DAIxContract.address;
       console.log(DAIx);
 
-      const createFlowOperation = sfMethods.cfaV1.createFlow({
+      const createFlowOperation = await sfMethods.cfaV1.createFlow({
         receiver: recipient,
         flowRate: "1",
         superToken: DAIx,
@@ -69,7 +69,7 @@ function ListOfBodyguard({ ethAddress, cbContract, sfMethods, userSigner }) {
     } catch (error) {
       console.error(error);
     }
-  } 
+  }
 
   return (
     <div className='container mx-auto'>
@@ -98,6 +98,9 @@ function ListOfBodyguard({ ethAddress, cbContract, sfMethods, userSigner }) {
                   ? <>
                       <p>Deposit: {b.sf.deposit}</p>
                       <p>FlowRate: {b.sf.flowRate}</p>
+                      <a className="text-blue-600 visited:text-purple-600" href={`https://app.superfluid.finance/`} target="_blank" rel="noopener noreferrer">
+                        View Dashboard
+                      </a>
                     </>
                   : <button className="py-2 px-4 text-white bg-teal-600 rounded baseline hover:bg-blue-400"  onClick={() => sendDai(b.data.from)}>
                     Send Dai
