@@ -46,13 +46,13 @@ function Chat({ userSigner, ethAddress }) {
   return (
     <div className="container mx-auto">
       {!xmtpMethod
-        ? <div className="bg-white p-3 rounded shadow w-4/12 mx-auto">
+        ? <div className="bg-white p-3 rounded shadow w-4/12 mx-auto mt-10">
             <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400 w-full" onClick={connect}>
               Connect Wallet to Chat
             </button>
             <p className="mt-1">With XMTP</p>
           </div>
-        : <div className="bg-white p-3 rounded shadow w-4/12 mx-auto">
+        : <div className="bg-white p-3 rounded shadow w-4/12 mx-auto mt-10">
             <h2>Chat</h2>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address to Chat With</label>
@@ -69,7 +69,7 @@ function Chat({ userSigner, ethAddress }) {
             </div>
           </div>
       }
-      {conversationMethod && <div className="bg-white p-3 rounded shadow mx-auto mt-2" style={{ maxWidth: "800px"}}>
+      {conversationMethod && <div className="bg-white p-3 rounded shadow mx-auto mt-2 flex flex-col" style={{ maxWidth: "800px"}}>
         <h2 className='mb-3 text-lg'>Messages to {toAddress}</h2>
         {messagesList.map(m => (
           <div key={m.id}>
@@ -79,12 +79,14 @@ function Chat({ userSigner, ethAddress }) {
           </div>
           
         ))}
-        <div className="mb-1">
-          <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="message" onChange={(e) => setNewMessage(e.target.value)} placeholder="Message..." />
+        <div className="flex mt-3">
+          <div className="flex-1">
+            <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" id="message" onChange={(e) => setNewMessage(e.target.value)} placeholder="Message..." />
+          </div>
+          <button className="py-2 px-4 text-white bg-blue-600 rounded baseline hover:bg-blue-400" onClick={sendMessage}>
+            Send
+          </button>
         </div>
-        <button className="py-2 px-4 mt-1 text-white bg-blue-600 rounded baseline hover:bg-blue-400" onClick={sendMessage}>
-          Send Message
-        </button>
       </div>}
     </div>
   )
