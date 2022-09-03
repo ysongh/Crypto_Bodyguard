@@ -13,6 +13,7 @@ function AppWrapper({ Component, pageProps }: AppProps) {
   const [navbarMode, setNavbarMode] = useState("");
   const [chainName, setChainName] = useState('');
   const [sfMethods, setsfMethods] = useState(null);
+  const [domainData, setDomainData] = useState(null);
 
   return <div>
     <Head title="Crypto Bodyguard" />
@@ -32,7 +33,9 @@ function AppWrapper({ Component, pageProps }: AppProps) {
       setUserSigner={setUserSigner}
       setChainName={setChainName}
       sfMethods={sfMethods}
-      setsfMethods={setsfMethods} />
+      setsfMethods={setsfMethods}
+      domainData={domainData}
+      setDomainData={setDomainData} />
   </div>
   
 }

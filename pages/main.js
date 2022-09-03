@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
+import UAuth from '@uauth/js';
 
 import {
   CB_ABI,
@@ -12,8 +13,13 @@ import {
   POLYGON_ADDRESS
 } from '../config';
 
-function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setChainName, setsfMethods }) {
+function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setChainName, setsfMethods, setDomainData }) {
   const router = useRouter();
+
+  const uauth = new UAuth({
+    clientID: process.env.NEXT_PUBLIC_UNSTOPPABLEDOMAINS_CLIENTID,
+    redirectUri: process.env.NEXT_PUBLIC_UNSTOPPABLEDOMAINS_REDIRECT_URI
+  });
 
   const openWithMetaMask = async () => {
     const web3Modal = new Web3Modal();
@@ -62,14 +68,29 @@ function main({ setNavbarMode, setETHAddress, setCBContract, setUserSigner, setC
     setsfMethods(sf);
   }
 
-  const selectUser = () => {
-    openWithMetaMask();
+  const loginWithUnstoppableDomains = async () => {
+    try {
+      const authorization = await uauth.loginWithPopup();
+      authorization.sub = authorization.idToken.sub;
+      console.log(authorization);
+
+      setDomainData(authorization);
+      connectWallet();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const selectUser = async () => {
+    // await loginWithUnstoppableDomains();
+    await openWithMetaMask();
     setNavbarMode("user");
     router.push(`/listofbodyguard`)
   }
 
-  const selectBodyguard = () => {
-    openWithMetaMask();
+  const selectBodyguard = async () => {
+    // await loginWithUnstoppableDomains();
+    await openWithMetaMask();
     setNavbarMode("bodyguard");
     router.push(`/signup`);
   }
